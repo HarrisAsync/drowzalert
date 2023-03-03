@@ -10,7 +10,7 @@ while(True):
     ret, frame = vid.read()
   
     # Display the resulting frame
-    # cv2.imshow('frame', frame)
+    cv2.imshow('frame', frame)
     if frame is not None:
       print(frame)
       

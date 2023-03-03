@@ -1,4 +1,4 @@
 # VirtualBoss
 
 ## Dependencies
-### Numpy, pyautogui, opencv-python
+### opencv-python

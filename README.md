@@ -1,6 +1,6 @@
 # Sleepy_driver_detector
 
-This app checks and sends alerts if a user is sleeping, which can be applied to vehicle drivers.
+This app checks and sends alerts if a user is sleeping, which can be applied to the specific case of vehicle drivers.
 
 ## Description
 

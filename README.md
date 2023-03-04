@@ -1,45 +1,32 @@
 # Sleepy_driver_detector
 
-This app checks and sends alerts if a user is sleeping, which can be applied to the specific case of vehicle drivers.
+Introducing Sleepy Driver Detector - an innovative solution to prevent drowsy driving and increase road safety.
 
 ## Description
 
-In this prototype, a python program checks if a user has their eyes closed bellow a threshold. If this is the case, a sound alert is triggered and the user is zapped.
+Our product utilises a camera to detect closed eyelids as an early sign of drowsiness and fatigue in drivers. Eyelids closed continuously for approximately three seconds trigger a quick alert sound and an automated voice that advises the driver to take rest. A series of such detections would subsequently trigger an electrical stimulation in the wristband accessory that the driver will be required to wear (primarily for drivers with hearing loss). This ensures that they are aware of their state and can take action to prevent accidents.
+
+We believe our product has the potential to save lives and make the roads a safer place. Our mission is to prevent drowsy driving and make the roads a safer place for all.
 
 ## Getting Started
 
 ### Dependencies
 
-* Describe any prerequisites, libraries, OS version, etc., needed before installing program.
-* ex. Windows 10
-
-### Installing
-
-* How/where to download your program
-* Any modifications needed to be made to files/folders
+* makecv
+* dlib
+* AudioSegment
 
 ### Executing program
 
-* How to run the program
-* Step-by-step bullets
-```
-code blocks for commands
-```
+** Requirements **
+* Must have MacOS
 
 ## Authors
 
 Contributors names and contact info
 
-ex. Dominique Pizzie  
-ex. [@DomPizzie](https://twitter.com/dompizzie)
-
-## Version History
-
-* 0.2
-    * Various bug fixes and optimizations
-    * See [commit change]() or See [release history]()
-* 0.1
-    * Initial Release
+ex. Harris Perdikoyiannis
+ex. 
 
 ## License
 

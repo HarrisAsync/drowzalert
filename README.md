@@ -18,7 +18,7 @@ We believe our product has the potential to save lives and make the roads a safe
 
 ### Executing program
 
-** Requirements **
+**Requirements**
 * Must have MacOS
 
 ## Authors

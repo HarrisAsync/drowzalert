@@ -2,7 +2,7 @@ import cv2
 import numpy as np
 import dlib
 from collections import OrderedDict
-from eye_aspect_ratio import eye_aspect_ratio, mouth_aspect_ratio
+from eye_aspect_ratio import eye_aspect_ratio
 from pydub import AudioSegment
 from pydub.playback import play
 import threading

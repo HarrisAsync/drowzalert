@@ -40,8 +40,8 @@ def draw_points(image, points):
   for i, (x, y) in enumerate(points):
     cv2.circle(image, (x, y), 2, (0, 0, 255), -1)
 
-# left_save = []
-# right_save = []
+
+temperature = 5
 
 while(True):
   ret, frame = vid.read()
@@ -62,9 +62,6 @@ while(True):
       draw_points(frame, right_eye)
       # draw_points(frame, mouth)
       ler, rer = eye_aspect_ratio(left_eye), eye_aspect_ratio(right_eye)
-      if ler < 0.2 and rer < 0.2:
-        print("Sleepy")
-      else: print("Good")
       # left_save.append(ler)
       # right_save.append(rer)
 
@@ -72,19 +69,25 @@ while(True):
       # print(f"right eye: {}")
       # print(f"mouth: {mouth_aspect_ratio(mouth)}")
 
-      # Check if we are empty
-      if len(left_eye_aspect_ratios) >= 3 and len(right_eye_aspect_ratios) >= 3:
-        left_eye_aspect_ratios.pop(0)
-        right_eye_aspect_ratios.pop(0)
       # Push aspect ratio
-      left_eye_aspect_ratios.append(eye_aspect_ratio(left_eye))
-      right_eye_aspect_ratios.append(eye_aspect_ratio(right_eye))
+      left_eye_aspect_ratios.append(ler)
+      right_eye_aspect_ratios.append(rer)
       # Check if the list has at least 3 points
       mv_avg_left_eye = 0
       mv_avg_right_eye = 0
-      if len(left_eye_aspect_ratios) >= 3 and len(right_eye_aspect_ratios) >= 3:
-        mv_avg_left_eye = (left_eye_aspect_ratios[-1] + left_eye_aspect_ratios[-2] + left_eye_aspect_ratios[-3])/3
-        mv_avg_right_eye = (right_eye_aspect_ratios[-1] + right_eye_aspect_ratios[-2] + right_eye_aspect_ratios[-3])/3
+
+      if len(left_eye_aspect_ratios) >= 6 and len(right_eye_aspect_ratios) >= 6:
+        left_eye_aspect_ratios.pop(0)
+        right_eye_aspect_ratios.pop(0)
+        mv_avg_left_eye = sum(left_eye_aspect_ratios)/len(left_eye_aspect_ratios)
+        mv_avg_right_eye = sum(right_eye_aspect_ratios)/len(right_eye_aspect_ratios)
+
+      if mv_avg_left_eye < 0.25 and mv_avg_right_eye < 0.25:
+        temperature -= 1
+      else: 
+        temperature = 15
+      if temperature < 0:
+        print("SLEEP")
 
 
     cv2.imshow('frame', frame)
@@ -100,6 +103,5 @@ cv2.destroyAllWindows()
 #   np.save(f, np.array(right_save))
 #
 # import matplotlib.pyplot as plt
-# plt.plot(left_save)
-# plt.plot(right_save)
+# plt.plot(vv)
 # plt.show()

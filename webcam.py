@@ -47,6 +47,7 @@ def draw_points(image, points):
 
 
 temperature = 5
+x = threading.Thread(target=lambda: play(sound))
 
 while(True):
   ret, frame = vid.read()
@@ -86,9 +87,10 @@ while(True):
       else: 
         temperature = 5 
 
-      x = threading.Thread(target=lambda: play(sound))
       if temperature < 0:
-        x.start()
+        if not x.is_alive():
+          x = threading.Thread(target=lambda: play(sound))
+          x.start()
 
 
     cv2.imshow('frame', frame)

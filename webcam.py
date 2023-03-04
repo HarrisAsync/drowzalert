@@ -1,6 +1,7 @@
 import cv2
 import numpy as np
 import dlib
+from collections import OrderedDict
 
 FPATH = "pretrain/haarcascade_frontalface_default.xml"
 EPATH = "pretrain/haarcascade_eye.xml"
@@ -16,7 +17,20 @@ face_detector = cv2.CascadeClassifier(FPATH)
 landmark_detector = dlib.get_frontal_face_detector()
 landmark_predictor = dlib.shape_predictor(DLIBPATH)
 
+FACIAL_LANDMARKS_68_IDXS = OrderedDict([
+	("mouth", (48, 68)),
+	("right_eyebrow", (17, 22)),
+	("left_eyebrow", (22, 27)),
+	("right_eye", (36, 42)),
+	("left_eye", (42, 48)),
+	("nose", (27, 36)),
+	("jaw", (0, 17))
+])
   
+def draw_points(image, points):
+  for i, (x, y) in enumerate(points):
+    cv2.circle(image, (x, y), 5, (0, 0, 255), -1)
+
 while(True):
   ret, frame = vid.read()
   if ret:
@@ -29,8 +43,12 @@ while(True):
       for i in range(0, 68):
         shape_np[i] = (shape.part(i).x, shape.part(i).y)
       shape = shape_np
-      for i, (x, y) in enumerate(shape):
-        cv2.circle(frame, (x, y), 5, (0, 0, 255), -1)
+      ls, le = FACIAL_LANDMARKS_68_IDXS['left_eye']
+      rs, re = FACIAL_LANDMARKS_68_IDXS['right_eye']
+      left_eye = shape[ls:le]
+      right_eye = shape[rs:re]
+      draw_points(frame, left_eye)
+      draw_points(frame, right_eye)
 
     cv2.imshow('frame', frame)
 

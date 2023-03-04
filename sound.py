@@ -2,7 +2,6 @@ from gtts import gTTS
 from pydub import AudioSegment
 from pydub.playback import play
 import tempfile
-import pygame 
 from random import randint
 
 
@@ -22,7 +21,10 @@ class Sound_Alerts:
         "In order to guarantee your own safety and that of other individuals on the road, if you think your eyes are closed, please pull over to a secure location right away and take a break from driving.",
         "To avoid any risks and keep yourself and others safe, please pull over to a safe spot immediately and take a break from driving if it seems like your eyes may be closed."
         ]
-    
+        self.chime1 = AudioSegment.from_wav("dundun_short.wav")
+        self.chime2 = AudioSegment.from_wav("Alarm_short.wav")
+        self.chime3 = AudioSegment.from_wav("AUGHHHH.wav")
+
     """
     has one function: input
     input 1 for a TTS sound for drowsiness
@@ -33,23 +35,18 @@ class Sound_Alerts:
     # 1: User seems drowsy
     # 2: user has fallen asleep
     # 3: 
-
-        pygame.mixer.init()
         
         index = randint(0, 4)
 
         
         if input == 1:
-            chime = pygame.mixer.Sound("dunDun.wav")
-            chime.play()
+            play(self.chime1)
             self.create_sound(self.drowsy_list[index])
         elif input == 2:
-            chime = pygame.mixer.Sound("Alarm.wav")
-            chime.play()
+            play(self.chime2)
             self.create_sound(self.sleep_list[index])
         elif input == 3:
-            chime = pygame.mixer.Sound("AUGHHHH.wav")
-            chime.play()
+            play(self.chime3)
             self.create_sound("zzz")
 
 
@@ -75,5 +72,5 @@ class Sound_Alerts:
 
 jack = Sound_Alerts()
 
-jack.input(2)
+jack.input(1)
 

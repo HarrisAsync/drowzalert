@@ -1,26 +1,30 @@
 import cv2
 
 # define a video capture object
-vid = cv2.VideoCapture(0+cv2.CAP_DSHOW)
+vid = cv2.VideoCapture(1)
+# create an instance of the Face Detection Cascade Classifier
+detector = cv2.CascadeClassifier("haarcascade_frontalface_default.xml")
+# Detect faces using the haarcascade classifier on the "grayscale image"
+# create an instance of the cv2.sdFacial landmark Detector with the model
+landmark_detector  = cv2.face.createFacemarkLBF()
+landmark_detector.loadModel("lbfmodel.yaml")
+
   
 while(True):
-      
-    # Capture the video frame
-    # by frame
-    ret, frame = vid.read()
-  
-    # Display the resulting frame
-    cv2.imshow('frame', frame)
-    if frame is not None:
-      print(frame)
-      
-    # the 'q' button is set as the
-    # quitting button you may use any
-    # desired button of your choice
+  ret, frame = vid.read()
+  if ret:
+    image_gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+    faces = detector.detectMultiScale(image_gray)
+    # _, landmarks = landmark_detector.fit(image_gray, faces)
+    for face in faces:
+  #     save the coordinates in x, y, w, d variables
+      (x,y,w,d) = face
+      # Draw a white coloured rectangle around each face using the face's coordinates
+      # on the "image_template" with the thickness of 2 
+      cv2.rectangle(image_gray,(x,y),(x+w, y+d),(255, 255, 255), 2)
+    cv2.imshow('frame', image_gray)
     if cv2.waitKey(1) & 0xFF == ord('q'):
-        break
+      break
   
-# After the loop release the cap object
 vid.release()
-# Destroy all the windows
 cv2.destroyAllWindows()

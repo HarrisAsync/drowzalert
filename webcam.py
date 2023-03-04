@@ -3,6 +3,9 @@ import numpy as np
 import dlib
 from collections import OrderedDict
 from eye_aspect_ratio import eye_aspect_ratio, mouth_aspect_ratio
+from pydub import AudioSegment
+from pydub.playback import play
+import threading
 
 FPATH = "pretrain/haarcascade_frontalface_default.xml"
 EPATH = "pretrain/haarcascade_eye.xml"
@@ -36,6 +39,8 @@ ls, le = FACIAL_LANDMARKS_68_IDXS['left_eye']
 rs, re = FACIAL_LANDMARKS_68_IDXS['right_eye']
 ms, me = FACIAL_LANDMARKS_68_IDXS['mouth']
 
+sound = AudioSegment.from_file("dunDun.wav")
+
 def draw_points(image, points):
   for i, (x, y) in enumerate(points):
     cv2.circle(image, (x, y), 2, (0, 0, 255), -1)
@@ -62,32 +67,28 @@ while(True):
       draw_points(frame, right_eye)
       # draw_points(frame, mouth)
       ler, rer = eye_aspect_ratio(left_eye), eye_aspect_ratio(right_eye)
-      # left_save.append(ler)
-      # right_save.append(rer)
 
-      # print(f"left eye: {}")
-      # print(f"right eye: {}")
-      # print(f"mouth: {mouth_aspect_ratio(mouth)}")
+      # # Push aspect ratio
+      # left_eye_aspect_ratios.append(ler)
+      # right_eye_aspect_ratios.append(rer)
+      # # Check if the list has at least 3 points
+      # mv_avg_left_eye = 0
+      # mv_avg_right_eye = 0
+      #
+      # if len(left_eye_aspect_ratios) >= 6 and len(right_eye_aspect_ratios) >= 6:
+      #   left_eye_aspect_ratios.pop(0)
+      #   right_eye_aspect_ratios.pop(0)
+      #   mv_avg_left_eye = sum(left_eye_aspect_ratios)/len(left_eye_aspect_ratios)
+      #   mv_avg_right_eye = sum(right_eye_aspect_ratios)/len(right_eye_aspect_ratios)
 
-      # Push aspect ratio
-      left_eye_aspect_ratios.append(ler)
-      right_eye_aspect_ratios.append(rer)
-      # Check if the list has at least 3 points
-      mv_avg_left_eye = 0
-      mv_avg_right_eye = 0
-
-      if len(left_eye_aspect_ratios) >= 6 and len(right_eye_aspect_ratios) >= 6:
-        left_eye_aspect_ratios.pop(0)
-        right_eye_aspect_ratios.pop(0)
-        mv_avg_left_eye = sum(left_eye_aspect_ratios)/len(left_eye_aspect_ratios)
-        mv_avg_right_eye = sum(right_eye_aspect_ratios)/len(right_eye_aspect_ratios)
-
-      if mv_avg_left_eye < 0.25 and mv_avg_right_eye < 0.25:
+      if ler < 0.20 and rer < 0.20:
         temperature -= 1
       else: 
-        temperature = 15
+        temperature = 5 
+
+      x = threading.Thread(target=lambda: play(sound))
       if temperature < 0:
-        print("SLEEP")
+        x.start()
 
 
     cv2.imshow('frame', frame)

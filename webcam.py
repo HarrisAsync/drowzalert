@@ -18,6 +18,10 @@ face_detector = cv2.CascadeClassifier(FPATH)
 landmark_detector = dlib.get_frontal_face_detector()
 landmark_predictor = dlib.shape_predictor(DLIBPATH)
 
+# Point storage 
+left_eye_aspect_ratios = []
+right_eye_aspect_ratios = []
+
 FACIAL_LANDMARKS_68_IDXS = OrderedDict([
 	("mouth", (48, 68)),
 	("right_eyebrow", (17, 22)),
@@ -52,6 +56,21 @@ while(True):
       draw_points(frame, right_eye)
       print("left eye: " + eye_aspect_ratio(left_eye))
       print("right eye: " + eye_aspect_ratio(right_eye))
+
+      # Check if we are empty
+      if len(left_eye_aspect_ratios) >= 3 and len(right_eye_aspect_ratios) >= 3:
+        left_eye_aspect_ratios.pop(0)
+        right_eye_aspect_ratios.pop(0)
+      # Push aspect ratio
+      left_eye_aspect_ratios.append(eye_aspect_ratio(left_eye))
+      right_eye_aspect_ratios.append(eye_aspect_ratio(right_eye))
+      # Check if the list has at least 3 points
+      mv_avg_left_eye = 0
+      mv_avg_right_eye = 0
+      if len(left_eye_aspect_ratios) >= 3 and len(right_eye_aspect_ratios) >= 3:
+        mv_avg_left_eye = (left_eye_aspect_ratios[-1] + left_eye_aspect_ratios[-2] + left_eye_aspect_ratios[-3])/3
+        mv_avg_right_eye = (right_eye_aspect_ratios[-1] + right_eye_aspect_ratios[-2] + right_eye_aspect_ratios[-3])/3
+
 
     cv2.imshow('frame', frame)
 

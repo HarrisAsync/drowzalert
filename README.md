@@ -25,12 +25,12 @@ We believe our product has the potential to save lives and make the roads a safe
 
 Contributors names and contact info
 
-Harris Perdikoyiannis
-Jack Zheng
-William Zhang
-Swathi Subramanyan
-Ross
-Hung Ba Huynh
+* Harris Perdikoyiannis
+* Jack Zheng
+* William Zhang
+* Swathi Subramanyan
+* Ross
+* Hung Ba Huynh
 
 ## License
 

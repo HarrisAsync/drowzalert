@@ -2,8 +2,10 @@ from gtts import gTTS
 from pydub import AudioSegment
 from pydub.playback import play
 import tempfile
+import pygame
 
 class Sound_Alerts:
+    
     """
     has one function: input
     input 1 for a TTS sound for drowsiness
@@ -14,12 +16,20 @@ class Sound_Alerts:
     # 1: User seems drowsy
     # 2: user has fallen asleep
     # 3: 
+        pygame.mixer.init()
+        
         if input == 1:
+            chime = pygame.mixer.Sound("dunDun.wav")
+            chime.play()
             self.create_sound("Drowsiness detected. Please consider taking a break and rest before continuing your journey.")
         elif input == 2:
             self.create_sound("You may be falling asleep. It's time to take a break and rest before continuing your journey. Please pull over to a safe location and take a break.")
         elif input == 3:
-            pass
+            chime = pygame.mixer.Sound("AUGHHHH.wav")
+            chime.play()
+            self.create_sound("zzz")
+
+
     
     def create_sound(self, text):
         """
@@ -42,5 +52,5 @@ class Sound_Alerts:
 
 jack = Sound_Alerts()
 
-jack.input(1)
+jack.input(2)
 

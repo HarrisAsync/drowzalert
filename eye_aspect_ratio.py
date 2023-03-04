@@ -22,4 +22,20 @@ def eye_aspect_ratio(eye: list[tuple[float, float]]) -> float:
 	return EAR
 
 
+"""
+mouth is a list of 20 (x,y) points
+"""
+def mouth_aspect_ratio(mouth: list[tuple[tuple, tuple]]) -> float:
+  # Euclidean distance between the three sets of vertical coordinates
+  MAR1 = distance.euclidean(mouth[13], mouth[19])
+  MAR2 = distance.euclidean(mouth[14], mouth[18])
+  MAR3 = distance.euclidean(mouth[15], mouth[17])
+
+  # Euclidean distance between the sets of horizontal coordinates
+  MAR4 = distance.euclidean(mouth[12], mouth[16])
+
+  MAR = (MAR1 + MAR2 + MAR3) / (3.0 * MAR4)
+  return MAR
+
+
 #print(eye_aspect_ratio([(20.2, 20.2),(32.0,20.2),(32.0,20.2),(32.0,20.2),(32.0,20.2),(32.0,20.2)]))

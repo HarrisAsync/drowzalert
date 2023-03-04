@@ -2,6 +2,7 @@ import cv2
 import numpy as np
 import dlib
 from collections import OrderedDict
+from eye_aspect_ratio import eye_aspect_ratio
 
 FPATH = "pretrain/haarcascade_frontalface_default.xml"
 EPATH = "pretrain/haarcascade_eye.xml"
@@ -49,6 +50,8 @@ while(True):
       right_eye = shape[rs:re]
       draw_points(frame, left_eye)
       draw_points(frame, right_eye)
+      print("left eye: " + eye_aspect_ratio(left_eye))
+      print("right eye: " + eye_aspect_ratio(right_eye))
 
     cv2.imshow('frame', frame)
 

@@ -21,18 +21,15 @@ FACIAL_LANDMARKS_68_IDXS = OrderedDict([
 	("jaw", (0, 17))
 ])
   
+TEMPERATURE = 5
 ls, le = FACIAL_LANDMARKS_68_IDXS['left_eye']
 rs, re = FACIAL_LANDMARKS_68_IDXS['right_eye']
 ms, me = FACIAL_LANDMARKS_68_IDXS['mouth']
-
-# sound = AudioSegment.from_file("dunDun.wav")
 
 def draw_points(image, points):
   for i, (x, y) in enumerate(points):
     cv2.circle(image, (x, y), 2, (0, 0, 255), -1)
 
-
-TEMPERATURE = 5
 
 if __name__ == "__main__":
   vid = cv2.VideoCapture(1)

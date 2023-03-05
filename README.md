@@ -1,6 +1,6 @@
-# Sleepy_driver_detector
+# Drowzalert
 
-Introducing Sleepy Driver Detector - an innovative solution to prevent drowsy driving and increase road safety.
+Introducing Drowzalert - an innovative solution to prevent drowsy driving and increase road safety.
 
 ## Description
 
@@ -19,7 +19,7 @@ We believe our product has the potential to save lives and make the roads a safe
 ### Executing program
 
 **Requirements**
-* Must have MacOS
+* Linux/MacOS
 
 ## Authors
 

@@ -32,7 +32,7 @@ Contributors names and contact info
 * Jack Zheng
 * William Zhang
 * Swathi Subramanyan
-* Ross
+* Roshan Ravikumar
 * Hung Ba Huynh
 
 ## License

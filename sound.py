@@ -19,8 +19,6 @@ class Sound_Alerts:
         for i in range(5):
             self.drowsy.append(AudioSegment.from_mp3("sound_files/drowsy{}.mp3".format(i)))
             self.sleepy.append(AudioSegment.from_mp3("sound_files/sleep{}.mp3".format(i)))
-        print(self.drowsy)
-        print(self.sleepy)
 
     def input(self, input: int):
     # takes an input:
@@ -39,6 +37,3 @@ class Sound_Alerts:
         elif input == 3:
             play(self.chime3)
             self.create_sound("zzz")
-
-jack = Sound_Alerts()
-jack.input(1)

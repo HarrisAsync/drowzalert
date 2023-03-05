@@ -1,7 +1,5 @@
 from pydub import AudioSegment
 from gtts import gTTS
-import tempfile
-from pydub.playback import play 
 
 drowsy_list = [
 "Our system has detected signs of drowsiness. It's important to take a break and rest before continuing your journey for your own safety.",
@@ -22,6 +20,6 @@ for i in range(len(drowsy_list)):
     text = drowsy_list[i]
     tts = gTTS(text, lang = 'en')
 
-    tts.save("drowsy{}.mp3".format(i))
+    tts.save("sound_files/drowsy{}.mp3".format(i))
 
     

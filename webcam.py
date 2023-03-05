@@ -68,6 +68,7 @@ if __name__ == "__main__":
             ### Execute block
             x = threading.Thread(target=lambda: ss.input(1))
             x.start()
+            bluetooth_execute_shock()
             ### Execute block
 
       cv2.imshow('frame', frame)
@@ -77,3 +78,13 @@ if __name__ == "__main__":
     
   vid.release()
   cv2.destroyAllWindows()
+
+# Uncomment this when using bluetooth
+# import bluetooth
+def bluetooth_execute_shock():
+  # Pair to device first
+  # sock = bluetooth.BluetoothSocket(bluetooth.RFCOMM)
+  # sock.connect(("00:13:04:83:EC:45", 1))
+  # sending any single character will trigger a shoc
+  # sock.send("a")
+  pass

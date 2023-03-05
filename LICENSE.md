@@ -1,6 +1,6 @@
 MIT License
 
-Copyright (c) 2023 Harris Perdikoyiannis, Jack Zheng, William Zhang, Swathi Subramanyan, Ross, Hung Ba Huynh.
+Copyright (c) 2023 Harris Perdikoyiannis, Jack Zheng, William Zhang, Swathi Subramanyan, Roshan Ravikumar, Hung Ba Huynh.
 
 
 Permission is hereby granted, free of charge, to any person obtaining a copy

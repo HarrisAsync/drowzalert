@@ -3,7 +3,6 @@ from pydub import AudioSegment
 from pydub.playback import play
 from random import randint
 
-
 class Sound_Alerts:
     """
     has one function: input
@@ -11,17 +10,15 @@ class Sound_Alerts:
     input 2 for a TTS sound for falling asleep
     """
     def __init__(self):
-        self.chime1 = AudioSegment.from_wav("dundun_short.wav")
-        self.chime2 = AudioSegment.from_wav("Alarm_short.wav")
-        self.chime3 = AudioSegment.from_wav("AUGHHHH.wav")
+        self.chime1 = AudioSegment.from_wav("sound_files/dundun_short.wav")
+        self.chime2 = AudioSegment.from_wav("sound_files/Alarm_short.wav")
+        self.chime3 = AudioSegment.from_wav("sound_files/AUGHHHH.wav")
         self.drowsy = []
         self.sleepy = []
 
-
-
         for i in range(5):
-            self.drowsy.append(AudioSegment.from_mp3("drowsy{}.wav".format(i)))
-            self.sleepy.append(AudioSegment.from_mp3("sleep{}.wav".format(i)))
+            self.drowsy.append(AudioSegment.from_mp3("sound_files/drowsy{}.mp3".format(i)))
+            self.sleepy.append(AudioSegment.from_mp3("sound_files/sleep{}.mp3".format(i)))
         print(self.drowsy)
         print(self.sleepy)
 
@@ -43,3 +40,5 @@ class Sound_Alerts:
             play(self.chime3)
             self.create_sound("zzz")
 
+jack = Sound_Alerts()
+jack.input(1)

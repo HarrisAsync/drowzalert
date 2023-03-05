@@ -1,6 +1,6 @@
-# Sleepy_driver_detector
+# Drowzalert
 
-Introducing Sleepy Driver Detector - an innovative solution to prevent drowsy driving and increase road safety.
+Introducing Drowzalert - an innovative solution to prevent drowsy driving and increase road safety.
 
 ## Description
 
@@ -10,26 +10,29 @@ We believe our product has the potential to save lives and make the roads a safe
 
 ## Getting Started
 
-### Dependencies
-
-* makecv
-* dlib
-* AudioSegment
+### Install
+Requires Linux/MacOS
+```bash
+git clone https://github.com/HarrisAsync/drowzalert.git
+cd drowzalert
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+```
 
 ### Executing program
-
-**Requirements**
-* Must have MacOS
+```bash
+./webcam.py
+```
 
 ## Authors
-
 Contributors names and contact info
 
 * Harris Perdikoyiannis
 * Jack Zheng
 * William Zhang
 * Swathi Subramanyan
-* Ross
+* Roshan Ravikumar
 * Hung Ba Huynh
 
 ## License

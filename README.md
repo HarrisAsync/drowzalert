@@ -10,19 +10,22 @@ We believe our product has the potential to save lives and make the roads a safe
 
 ## Getting Started
 
-### Dependencies
-
-* makecv
-* dlib
-* AudioSegment
+### Install
+Requires Linux/MacOS
+```bash
+git clone https://github.com/HarrisAsync/drowzalert.git
+cd drowzalert
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+```
 
 ### Executing program
-
-**Requirements**
-* Linux/MacOS
+```bash
+./webcam.py
+```
 
 ## Authors
-
 Contributors names and contact info
 
 * Harris Perdikoyiannis

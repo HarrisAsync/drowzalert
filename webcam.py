@@ -6,9 +6,6 @@ from eye_aspect_ratio import eye_aspect_ratio
 import threading
 from sound import Sound_Alerts
 
-FPATH = "pretrain/haarcascade_frontalface_default.xml"
-EPATH = "pretrain/haarcascade_eye.xml"
-LBFPATH = "pretrain/lbfmodel.yaml"
 DLIBPATH = "pretrain/shape_predictor_68_face_landmarks.dat"
 
 FACIAL_LANDMARKS_68_IDXS = OrderedDict([
@@ -34,7 +31,6 @@ def draw_points(image, points):
 if __name__ == "__main__":
   vid = cv2.VideoCapture(1)
   # create an instance of the Face Detection Cascade Classifier
-  face_detector = cv2.CascadeClassifier(FPATH)
   landmark_detector = dlib.get_frontal_face_detector()
   landmark_predictor = dlib.shape_predictor(DLIBPATH)
   ss = Sound_Alerts()
@@ -68,6 +64,7 @@ if __name__ == "__main__":
             ### Execute block
             x = threading.Thread(target=lambda: ss.input(1))
             x.start()
+            print("Electric stimulant")
             ### Execute block
 
       cv2.imshow('frame', frame)
